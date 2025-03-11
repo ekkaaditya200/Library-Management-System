@@ -2,7 +2,7 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Home = () => {
-  return <></>;
+  return <>Home</>;
 };
 
 export default Home;
