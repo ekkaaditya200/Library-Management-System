@@ -31,7 +31,7 @@ ChartJS.register(
 );
 
 const UserDashboard = () => {
-  return <></>;
+  return <>UserDashboard</>;
 };
 
 export default UserDashboard;

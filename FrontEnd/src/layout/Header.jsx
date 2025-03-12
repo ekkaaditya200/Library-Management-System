@@ -3,7 +3,7 @@ import settingIcon from "../assets/setting.png";
 import userIcon from "../assets/user.png";
 
 const Header = () => {
-  return <></>;
+  return <>Header</>;
 };
 
 export default Header;
