@@ -4,7 +4,7 @@ import closeIcon from "../assets/close-square.png";
 import keyIcon from "../assets/key.png";
 
 const AddNewAdmin = () => {
-  return <></>;
+  return <>Add New Admin</>;
 };
 
 export default AddNewAdmin;

@@ -9,10 +9,14 @@ import catalogIcon from "../assets/catalog.png";
 import settingIcon from "../assets/setting-white.png";
 import usersIcon from "../assets/people.png";
 import { RiAdminFill } from "react-icons/ri";
+import AddNewAdmin from "../popups/AddNewAdmin";
+import { toggleAddNewAdminPopup } from "../store/slices/popUpSlice";
 
 const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
   const dispatch = useDispatch();
   const { addNewAdminPopup } = useSelector((state) => state.popup);
+
+  console.log("AddNewAdminPopup = ", addNewAdminPopup);
 
   const { loading, error, message, isAuthenticated, user } = useSelector(
     (state) => state.auth
@@ -45,7 +49,6 @@ const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
           <img src={logo_with_title} alt="logo" />
         </div>
         <nav className="flex-1 px-6 space-y-2">
-
           <button
             onClick={() => setSelectedComponent("Dashboard")}
             className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
@@ -60,31 +63,31 @@ const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
             <img src={bookIcon} alt="books" /> <span>Books</span>
           </button>
 
-          {isAuthenticated && user?.role === "Admin" && (
-            <>
-              <button
-                onClick={() => setSelectedComponent("Catalog")}
-                className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
-              >
-                <img src={catalogIcon} alt="catalog" /> <span>Catalog</span>
-              </button>
+          {/* {isAuthenticated && user?.role === "Admin" && (
+            <> */}
+          <button
+            onClick={() => setSelectedComponent("Catalog")}
+            className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
+          >
+            <img src={catalogIcon} alt="catalog" /> <span>Catalog</span>
+          </button>
 
-              <button
-                onClick={() => setSelectedComponent("Users")}
-                className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
-              >
-                <img src={usersIcon} alt="users" /> <span>Users</span>
-              </button>
+          <button
+            onClick={() => setSelectedComponent("Users")}
+            className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
+          >
+            <img src={usersIcon} alt="users" /> <span>Users</span>
+          </button>
 
-              <button
-                onClick={() => dispatch(toggleAddNewAdminPopup())}
-                className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
-              >
-                <RiAdminFill className="w-6 h-6" /> <span>Add New Admin</span>
-              </button>
+          <button
+            onClick={() => dispatch(toggleAddNewAdminPopup())}
+            className="w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2"
+          >
+            <RiAdminFill className="w-6 h-6" /> <span>Add New Admin</span>
+          </button>
 
-            </>
-          )}
+          {/* </>
+          )} */}
 
           {isAuthenticated && user?.role === "User" && (
             <button
@@ -103,17 +106,14 @@ const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
             <img src={settingIcon} alt="setting" />{" "}
             <span>Update Credentials</span>
           </button>
-
         </nav>
         <div className="px-6 py-4">
-          
           <button
             className="py-2 font-medium text-center bg-transparent rounded-md hover:cursor-pointer flex items-center justify-center space-x-5 mb-7 mx-auto w-fit"
             onClick={handleLogout}
           >
             <img src={logoutIcon} alt="logout" /> <span>Log Out</span>
           </button>
-
         </div>
         <img
           src={closeIcon}
