@@ -15,9 +15,9 @@ const Home = () => {
   const [selectedComponent, setSelectedComponent] = useState(false);
 
   const { user, isAuthenticated } = useSelector((state) => state.auth);
-  // if (!isAuthenticated) {
-  //   return <Navigate to={"/login"}></Navigate>;
-  // }
+  if (!isAuthenticated) {
+    return <Navigate to={"/login"}></Navigate>;
+  }
   return (
     <>
       <div className="relative md:pl-64 flex min-h-screen bg-gray-100">

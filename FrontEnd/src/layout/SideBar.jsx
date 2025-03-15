@@ -11,6 +11,8 @@ import usersIcon from "../assets/people.png";
 import { RiAdminFill } from "react-icons/ri";
 import AddNewAdmin from "../popups/AddNewAdmin";
 import { toggleAddNewAdminPopup } from "../store/slices/popUpSlice";
+import { logout } from "../store/slices/authSlice";
+import {toast} from 'react-toastify'
 
 const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
   const dispatch = useDispatch();

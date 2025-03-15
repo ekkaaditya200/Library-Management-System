@@ -225,6 +225,7 @@ export const logout = () => async (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
+      console.log("Res ",res);
       dispatch(authSlice.actions.logoutSuccess(res.data.message));
       dispatch(authSlice.actions.resetAuthSlice());
     })
