@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/black-logo.png";
 import logo_with_title from "../assets/logo-with-title.png";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { register, resetAuthSlice } from "../store/slices/authSlice";
 import { toast } from "react-toastify";
 const Register = () => {
@@ -25,6 +25,8 @@ const Register = () => {
   };
   useEffect(() => {
     if (message) {
+      toast.success(message);
+      dispatch(resetAuthSlice());
       navigate(`/otp-verification/${email}`);
     }
     if (error) {

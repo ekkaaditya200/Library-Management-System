@@ -214,7 +214,7 @@ export const login = (data) => async (dispatch) => {
       dispatch(authSlice.actions.loginSuccess(res.data));
     })
     .catch((error) => {
-      dispatch(authSlice.actions.loginFailed(error.response.data.message));
+      dispatch(authSlice.actions.loginFailed(error.response.message));
     });
 };
 

@@ -164,6 +164,7 @@ export const getUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  console.log("BackEnd email = ", req.body.email);
   if (!req.body.email) {
     return next(new ErrorHandler("Email is required", 400));
   }
@@ -178,10 +179,13 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   //! Time - 2:55:00
   const resetToken = user.getResetPasswordToken();
+  console.log("ResetToken = ", resetToken);
+
   await user.save({ validateBeforeSave: false });
   const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
   console.log(resetPasswordUrl);
   const message = generateForgotPasswordEmailTemplate(resetPasswordUrl);
+  console.log("Message = ", message);
   try {
     await sendEmail({
       email: user.email,
@@ -196,6 +200,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save({ validateBeforeSave: false });
+    console.log("Error = ",error);
     return next(new ErrorHandler(error.message, 500));
   }
 });
