@@ -125,7 +125,7 @@ const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
         />
       </aside>
       {addNewAdminPopup && <AddNewAdmin />}
-      {addNewAdminPopup && <SettingPopup/>}
+      {settingPopup && <SettingPopup/>}
     </>
   );
 };
