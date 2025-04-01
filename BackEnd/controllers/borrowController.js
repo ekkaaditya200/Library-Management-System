@@ -71,6 +71,7 @@ export const recordBorrowedBook = catchAsyncErrors(async (req, res, next) => {
 export const returnBorrowedBook = catchAsyncErrors(async (req, res, next) => {
   const {id: bookId } = req.params;
   const {email} = req.body;
+  console.log("Book Id = ", bookId, " and Email = ", email);
   const book = await Book.findById(bookId);
   if (!book) {
     return next(new ErrorHandler("Book not found", 404));

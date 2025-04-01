@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { act } from "react";
+import { toggleReadBookPopup } from "./popupSlice";
 
 const borrowSlice = createSlice({
     name:"borrow",
@@ -44,11 +44,11 @@ const borrowSlice = createSlice({
             state.error = null;
             state.message = null;
         },
-        fetchAllBorrowedBooksRequest(state, action){
+        fetchAllBorrowedBooksSuccess(state, action){
             state.loading = false;
             state.allBorrowedBooks = action.payload;
         },
-        fetchAllBorrowedBooksRequest(state, action){
+        fetchAllBorrowedBooksFailed(state, action){
             state.loading = false;
             state.error = action.payload;
         },
@@ -66,7 +66,7 @@ const borrowSlice = createSlice({
             state.message = null;
             state.error = action.payload;
         },
-        resetBookslice(state){
+        resetBorrowSlice(state){
             state.loading = false;
             state.error = null;
             state.message = null;
@@ -84,10 +84,10 @@ export const fetchUserBorrowedBooks = () => async(dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(bookSlice.actions.fetchUserBorrowedBooksSuccess(res.data.borrowedBooks));
+      dispatch(borrowSlice.actions.fetchUserBorrowedBooksSuccess(res.data.borrowedBooks));
     })
     .catch((error) => {
-      dispatch(bookSlice.actions.fetchUserBorrowedBooksFailed(error.response.data.message));
+      dispatch(borrowSlice.actions.fetchUserBorrowedBooksFailed(error.response.data.message));
     });
 }
 
@@ -101,10 +101,10 @@ export const fetchAllBorrowedBooks = () => async(dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(bookSlice.actions.fetchAllBorrowedBooksSuccess(res.data.borrowedBooks));
+      dispatch(borrowSlice.actions.fetchAllBorrowedBooksSuccess(res.data.borrowedBooks));
     })
     .catch((error) => {
-      dispatch(bookSlice.actions.fetchAllBorrowedBooksFailed(error.response.data.message));
+      dispatch(borrowSlice.actions.fetchAllBorrowedBooksFailed(error.response.data.message));
     });
 }
 export const recordBorrowBook = (email, id) => async(dispatch) => {
@@ -118,6 +118,7 @@ export const recordBorrowBook = (email, id) => async(dispatch) => {
     })
     .then((res) => {
       dispatch(borrowSlice.actions.recordBookSuccess(res.data.message));
+      dispatch(toggleReadBookPopup());
     })
     .catch((error) => {
       dispatch(borrowSlice.actions.recordBookFailed(error.response.data.message));
@@ -126,7 +127,7 @@ export const recordBorrowBook = (email, id) => async(dispatch) => {
 export const returnBook = (email, id) => async(dispatch) => {
     dispatch(borrowSlice.actions.returnBookRequest());
     await axios
-    .put(`http://localhost:4000/api/v1/borrow/borrowed-books-by-users/${id}`, {
+    .put(`http://localhost:4000/api/v1/borrow/return-borrowed-book/${id}`,{email}, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -140,8 +141,8 @@ export const returnBook = (email, id) => async(dispatch) => {
     });
 };
 
-export const resetBookSlice = () => (disptach) => {
-    disptach(borrowSlice.actions.resetBookslice());
+export const resetBorrowSlice = () => (disptach) => {
+    disptach(borrowSlice.actions.resetBorrowSlice());
 };
 
 export default borrowSlice.reducer;
