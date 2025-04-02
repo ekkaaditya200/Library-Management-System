@@ -35,6 +35,9 @@ app.use(
   })
 );
 
+app.get("/",(req,res)=>{
+  res.send("BackEnd is Live Now!");
+})
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/book", bookRouter);
 app.use("/api/v1/borrow", borrowRouter);

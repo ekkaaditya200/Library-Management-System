@@ -1,5 +1,5 @@
 import express from "express";
-import { recordBorrowedBook, getBorrowedBooksForAdmin, returnBorrowedBook, borrowedBooks } from "../controllers/borrowcontroller.js";
+import { recordBorrowedBook, getBorrowedBooksForAdmin, returnBorrowedBook, borrowedBooks } from "../controllers/borrowController.js";
 import {
   isAuthenticated,
   isAuthorized,
