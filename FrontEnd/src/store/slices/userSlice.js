@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { act } from "react";
 import { toast } from "react-toastify";
 import { toggleAddNewAdminPopup } from "./popUpSlice";
 

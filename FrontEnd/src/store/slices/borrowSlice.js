@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { toggleReadBookPopup } from "./popupSlice";
+import { toggleReadBookPopup } from "./popUpSlice";
 
 const borrowSlice = createSlice({
     name:"borrow",

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { toggleAddBookPopup } from "./popupSlice";
+import { toggleAddBookPopup } from "./popUpSlice";
 import { toast } from "react-toastify";
 
 const bookSlice = createSlice({
