@@ -39,7 +39,7 @@ const AddNewAdmin = () => {
   };
   return (
     <>
-      <div className="fixed inset-0 bg-transparent p-5 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-black/50 p-5 flex items-center justify-center z-50">
         <div className="w-full bg-white rounded-lg shadow-lg md:w-1/3">
           <div className="p-6">
             <header className="flex justify-between items-center mb-7 pb-5 border-b-[1px] border-black">
