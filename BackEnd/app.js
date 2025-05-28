@@ -1,6 +1,8 @@
 // const express = require("express");
 import express, { application } from "express"; //For type module
 import { config } from "dotenv";
+config({ path: "./config/config.env" });
+
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { connectDB } from "./database/db.js";
@@ -15,7 +17,6 @@ import { removeUnverifiedAccounts } from "./services/removeUnverifiedAccounts.js
 
 export const app = express();
 
-config({ path: "./config/config.env" });
 
 app.use(cookieParser());
 
@@ -29,7 +30,7 @@ app.use(expressFileupload({
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: [process.env.FRONTEND],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
